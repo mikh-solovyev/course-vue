@@ -1,0 +1,30 @@
+.scroll-down {
+    display: flex;
+    align-items: center;
+
+    &__btn {
+        background: none;
+        @include color($white);
+        font-size: 18px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    &__icon {
+        width: 14px;
+        height: 14px;
+        fill: $white;
+        position: relative;
+        top: 2px;
+        margin-left: 12px;
+        transition: 0.3s;
+    }
+
+    &:hover &__btn {
+        @include color($hover);
+    }
+
+    &:hover &__icon {
+        fill: $hover;
+    }
+}

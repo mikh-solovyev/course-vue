@@ -1,0 +1,49 @@
+.works-preview {
+    display: flex;
+    justify-content: space-between;
+
+    &__pictures {
+        position: relative;
+        width: 66%;
+
+        &::before {
+            content: attr(data-slide);
+            position: absolute;
+            top: 5%;
+            right: -17%;
+            line-height: 1;
+            font-size: 400px;
+            font-weight: 800;
+            color: #E6E6E6;
+            z-index:-1
+        }
+    }
+
+    &__info {
+        width: 24%;
+    }
+
+    &__thumbs {
+        position: absolute;
+        right: 0;
+        bottom: 10%;
+    }
+
+    &__btns {
+        position: absolute;
+        left: 100%;
+        bottom: 10%;
+    }
+
+    &__title {
+        @include font-desktop-h3;
+        @include color($dark-blue);
+        margin-bottom: 35px;
+    }
+
+    &__desc {
+        @include font-desktop-body-semibold-1;
+        @include color($dark-blue, 0.8);
+        margin-bottom: 45px;
+    }
+}

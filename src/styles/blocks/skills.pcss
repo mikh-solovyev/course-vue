@@ -1,0 +1,25 @@
+.skills {
+    &-row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 38px;
+    }
+
+    &-row__list {
+        display: flex;
+    }
+
+    &-row__title {
+        @include font-desktop-body-bold-1;
+        @include color($white);
+        margin-bottom: 21px;
+    }
+
+    &-row__item {
+        margin-right: 66px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

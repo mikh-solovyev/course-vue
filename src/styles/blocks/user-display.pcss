@@ -1,0 +1,28 @@
+.user-display {
+    display: flex;
+    align-items: center;
+
+
+    &__avatar {
+        max-width: 75px;
+        margin-right: 31px;
+    }
+
+    &__avatar-style {
+        max-width: 75px;
+        max-height: 75px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    &__name {
+        @include font-desktop-body-bold-2;
+        @include color($white);
+        margin-bottom: 12px;
+    }
+
+    &__position {
+        @include font-desktop-body-semibold-2;
+        @include color($white, 0.5);
+    }
+}

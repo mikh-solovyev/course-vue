@@ -1,0 +1,21 @@
+.round-btn {
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    border: 1px solid $white;
+    background: transparent;
+    position: relative;
+    padding: 0;
+
+    &--direction--right {
+        &::before {
+            content: svg-load('next.svg', fill=$text-color, width=10px, height=17px);
+        }
+    }
+
+    &--direction--left {
+        &::before {
+            content: svg-load('prev.svg', fill=$text-color, width=10px, height=17px);
+        }
+    }
+}

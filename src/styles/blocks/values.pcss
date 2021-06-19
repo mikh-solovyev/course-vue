@@ -1,0 +1,43 @@
+.values {
+    position: relative;
+    background: url("~images/bg/skill.jpg") no-repeat center top / cover;
+    padding: 140px 0;
+
+    &::before {
+        content: url("~images/bg/arm.png");
+        position: absolute;
+        bottom: -12%;
+        left:0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__title {
+        max-width: 600px;
+    }
+
+    &__title-text {
+        @include font-desktop-h3;
+        @include color($white);
+        margin-bottom: 53px;
+    }
+
+    &__content {
+        @include font-desktop-body-semibold-1;
+        @include color($white, 0.8);
+        margin-bottom: 80px;
+    }
+
+    &__widget {
+        width: 93%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

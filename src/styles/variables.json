@@ -1,0 +1,23 @@
+{
+  "text-color": "#ffffff",
+  "dark-text-color": "#333C49",
+  "links-color": "#586ED3",
+  "errors-color": "#cd1515",
+  "bp-desktop-hd": "1800px",
+  "bp-desktop": "1200px",
+  "bp-tablets": "768px",
+  "bp-phones": "480px",
+  "white": "#ffffff",
+  "circles": "#E9E9E9",
+  "gradient-from": "#D0731B",
+  "gradient-to": "#DC9322",
+  "dark-blue": "#333C49",
+  "tag": "#F3F6F9",
+  "grey": "#303133",
+  "link": "#586ED3",
+  "hover": "#FF9A00",
+  "border": "#DC9322",
+  "dark": "#222427",
+  "light-grey": "#717883",
+  "red": "#DB0200"
+}

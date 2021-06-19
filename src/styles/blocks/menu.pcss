@@ -1,0 +1,28 @@
+.menu {
+    &__list {
+        display: flex;
+    }
+
+    &__item {
+        margin-right: 60px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &__link {
+        @include font-desktop-menu;
+        @include color($white);
+        white-space: nowrap;
+        transition: 0.3s;
+
+        &:hover {
+            @include color($hover);
+        }
+    }
+
+    &--footer {
+        margin-bottom: 47px;
+    }
+}

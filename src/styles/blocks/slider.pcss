@@ -1,0 +1,42 @@
+.slider {
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 78px;
+    }
+
+    &__buttons {
+        padding-right: 57%;
+    }
+
+    &__btn {
+        margin-right: 28px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &__content {
+        display: flex;
+    }
+
+    &__item {
+        max-width: 30%;
+        padding-left: 100px;
+        position: relative;
+        margin-right: 60px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &::before {
+            content: svg-load('quote.svg', fill=$grey, width=76px, height=58px);
+            position: absolute;
+            top: 12px;
+            left: 0;
+        }
+    }
+}

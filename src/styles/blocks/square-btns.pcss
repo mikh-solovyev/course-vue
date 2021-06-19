@@ -1,0 +1,22 @@
+.square-btns {
+    display: flex;
+    flex-direction: column;
+
+    &__item {
+        width: 58px;
+        height: 58px;
+        background-color: #333C49;
+
+        &--next {
+            &::before {
+                content: svg-load('next.svg', fill=$white, width=10px, height=17px);
+            }
+        }
+
+        &--prev {
+            &::before {
+                content: svg-load('prev.svg', fill=$light-grey, width=10px, height=17px);
+            }
+        }
+    }
+}

@@ -1,0 +1,46 @@
+.footer {
+    background: #222427;
+    padding: 75px 0;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        width: 25%;
+    }
+
+    &__navigation {
+        width: 30%;
+    }
+
+    &__slogan {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 30%;
+    }
+
+    &__userInfo-title {
+        @include font-desktop-body-bold-2;
+        @include color($white);
+        line-height: 30px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+    }
+
+    &__userInfo-desc {
+        @include font-desktop-body-regular-1;
+        @include color($white, 0.3);
+    }
+
+    &__text {
+        @include font-desktop-body-regular-1;
+        @include color($white, 0.6);
+        margin-bottom: 40px;
+    }
+
+}

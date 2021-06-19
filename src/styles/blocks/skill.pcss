@@ -1,0 +1,31 @@
+.skill {
+    position: relative;
+    width: 166px;
+    height: 166px;
+
+    &__circle {
+        fill: transparent;
+
+        &--layer--under {
+            stroke-width: 3px;
+            stroke: $circles;
+            opacity: 0.1;
+        }
+
+        &--layer--above {
+            stroke-width: 6px;
+            stroke-dasharray: 251;
+            stroke-dashoffset: 100;
+        }
+    }
+
+    &__title {
+        @include font-desktop-body-bold-2;
+        @include color($white, 0.5);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 14px;
+    }
+}
