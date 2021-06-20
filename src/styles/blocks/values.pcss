@@ -4,12 +4,14 @@
     padding: 140px 0;
 
     &::before {
-        content: url("~images/bg/arm.png");
+        content: "";
         position: absolute;
-        bottom: -12%;
-        left:0;
-        width: 100%;
+        bottom: -9%;
+        left: 0;
+        right: 65%;
         height: 100%;
+        background: url("~images/bg/arm.png") no-repeat left bottom;
+        background-size: contain;
     }
 
     &__container {
@@ -36,7 +38,7 @@
     }
 
     &__widget {
-        width: 93%;
+        margin-left: 30%;
         display: flex;
         justify-content: flex-end;
     }
