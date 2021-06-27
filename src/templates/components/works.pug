@@ -1,0 +1,65 @@
+template#works-container
+    .works-preview
+        display(
+            :current-work="currentWork",
+            :works="works",
+            :current-index="currentIndex",
+            @slide="slide",
+            @change="change"
+        )
+        info(
+            :current-work="currentWork",
+        )
+
+template#works-display
+    .works-preview__pictures(:data-slide="currentIndex + 1")
+        img(:src="currentWork.picture" :alt="currentWork.title").works-preview__image
+        .works-preview__thumbs
+            thumbs(
+                :works="normalWorks",
+                :current-work="currentWork",
+                @change="$emit('change', $event)"
+            )
+        .works-preview__btns
+            btns(
+                @slide="$emit('slide', $event)"
+            )
+
+template#works-thumbs
+    ul.thumbs
+        li.thumbs__item(
+                v-for="(slide, index) in works"
+                :key="slide.id"
+                :class="{'thumbs__item--active' : slide.id === currentWork.id}"
+                @click="$emit('change', index)"
+            )
+            button.thumbs__link
+                img(:src="slide.picture" :alt="slide.title").thumbs__pic
+
+template#works-btns
+    .square-btns
+        button(
+            @click="$emit('slide', 'next')"
+            type="button"
+        ).square-btns__item.square-btns__item--next
+        button(
+            @click="$emit('slide', 'prev')"
+            type="button"
+        ).square-btns__item.square-btns__item--prev
+
+template#works-info
+    .works-preview__info
+        tags(
+            :tags="currentWork.skills"
+        )
+        h3.works-preview__title {{currentWork.title}}
+        .works-preview__desc
+            p {{currentWork.description}}
+        a(:href="currentWork.link" target="_blank").iconed-link
+            +icon(`link`, "iconed-link__pic")
+            span.iconed-link__text Просмотреть сайт
+
+template#works-tags
+    ul.tags
+        li.tags__item(v-for="tag in tags" :key="tag")
+            .tag {{tag}}

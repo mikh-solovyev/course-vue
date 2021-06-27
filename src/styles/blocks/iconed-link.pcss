@@ -6,6 +6,14 @@
     display: flex;
     align-items: center;
 
+    @include tablets {
+        font-size: 15px;
+    }
+
+    @include phones {
+        align-self: flex-start;
+    }
+
     &:hover {
         text-decoration: underline;
     }

@@ -6,10 +6,18 @@
         flex-direction: column;
         justify-content: space-between;
         padding-bottom: 20px;
+
+        @include tablets {
+            justify-content: flex-start;
+        }
     }
 
     &__bottom-buttons {
         display: flex;
         justify-content: center;
+
+        @include tablets {
+            opacity: 0;
+        }
     }
 }

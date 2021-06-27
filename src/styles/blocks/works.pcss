@@ -1,3 +1,17 @@
 .works {
     padding: 200px 0;
+
+    @include tablets {
+        padding: 150px 0;
+    }
+
+    @include phones {
+        padding: 100px 0;
+    }
+
+    &__container {
+        @include phones {
+            width: 100%;
+        }
+    }
 }

@@ -8,5 +8,20 @@
 
     &--in--works {
         margin-bottom: 83px;
+
+        @include tablets {
+            margin-bottom: 50px;
+        }
+
+        @include phones {
+            text-align: center;
+        }
+    }
+
+    &--in--slider {
+        @include phones {
+            @include font-desktop-body-bold-1;
+            margin-bottom: 20px;
+        }
     }
 }

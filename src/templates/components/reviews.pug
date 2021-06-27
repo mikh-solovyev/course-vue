@@ -1,0 +1,19 @@
+template#slider-container
+    .slider
+        .slider__header
+            h2.section-title.section-title--in--slider Что обо мне говорят
+            .slider__buttons
+                button(type="button" @click="slide('prev')" :class="{'disabled' : isStart}").slider__btn.round-btn.round-btn--direction--left
+                button(type="button" @click="slide('next')" :class="{'disabled' : isFinish}").slider__btn.round-btn.round-btn--direction--right
+        swiper(ref="slider" :options="sliderOptions")
+            swiper-slide(v-for="review in reviews" :key="review.id")
+                .review
+                    .review__text {{review.text}}
+                    .review__user
+                        .user-display
+                            .user-display__avatar
+                                .user-display__avatar-style
+                                    img(:src="review.picture" :alt="review.name").user-display__pic
+                            .user-display__data
+                                .user-display__name {{review.name}}
+                                .user-display__position {{review.position}}

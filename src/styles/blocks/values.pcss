@@ -3,6 +3,10 @@
     background: url("~images/bg/skill.jpg") no-repeat center top / cover;
     padding: 140px 0;
 
+    @include tablets {
+        padding: 100px 0 330px 0;
+    }
+
     &::before {
         content: "";
         position: absolute;
@@ -12,6 +16,12 @@
         height: 100%;
         background: url("~images/bg/arm.png") no-repeat left bottom;
         background-size: contain;
+
+        @include tablets {
+            background: url("~images/bg/arm-tablet.png") no-repeat center bottom;
+            bottom: 0;
+            right: 0;
+        }
     }
 
     &__container {
@@ -23,12 +33,29 @@
 
     &__title {
         max-width: 600px;
+
+        @include tablets {
+            text-align: center;
+        }
+
+        @include phones {
+            text-align: left;
+        }
     }
 
     &__title-text {
         @include font-desktop-h3;
         @include color($white);
         margin-bottom: 53px;
+
+        @include tablets {
+            margin: 0 20%;
+        }
+
+        @include phones {
+            margin: 0;
+            margin-bottom: 28px;
+        }
     }
 
     &__content {
@@ -41,5 +68,9 @@
         margin-left: 30%;
         display: flex;
         justify-content: flex-end;
+
+        @include tablets {
+            margin-left: 0;
+        }
     }
 }

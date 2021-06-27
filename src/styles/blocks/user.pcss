@@ -1,5 +1,9 @@
 .user {
 
+    @include phones {
+        margin-bottom: 45px;
+    }
+
     &__avatar {
         margin-bottom: 65px;
     }
@@ -15,6 +19,14 @@
     &__data {
         width: 100%;
         padding: 0 85px;
+
+        @include desktop{
+            padding: 0;
+        }
+
+        @include phones {
+            margin-left: 15%;
+        }
     }
 
     &__data-row {

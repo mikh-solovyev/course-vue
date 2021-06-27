@@ -1,4 +1,16 @@
 .welcome-section {
     background: url("~images/bg/hero.jpg") no-repeat center top / cover;
     min-height: 100vh;
+
+    @include desktop {
+        background: url("~images/bg/hero1200.jpg") no-repeat center top / cover;
+    }
+
+    @include tablets {
+        background: url("~images/bg/hero-tablet.jpg") no-repeat center top / cover;
+    }
+
+    @include phones {
+        background: url("~images/bg/hero-phone.jpg") no-repeat center top / cover;
+    }
 }

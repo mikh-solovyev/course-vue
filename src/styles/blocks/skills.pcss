@@ -7,16 +7,33 @@
 
     &-row__list {
         display: flex;
+
+        @include phones {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
 
     &-row__title {
         @include font-desktop-body-bold-1;
         @include color($white);
         margin-bottom: 21px;
+
+        @include tablets {
+            text-align: center;
+        }
     }
 
     &-row__item {
         margin-right: 66px;
+
+        @include desktop {
+            margin-right: 30px;
+        }
+
+        @include phones {
+            margin-right: 0;
+        }
 
         &:last-child {
             margin-right: 0;

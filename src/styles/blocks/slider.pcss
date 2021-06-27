@@ -4,10 +4,33 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 78px;
+
+        @include tablets {
+            margin-bottom: 50px;
+        }
+
+        @include phones {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
 
     &__buttons {
         padding-right: 57%;
+
+        @include desktop {
+            padding-right: 50%;
+        }
+
+        @include tablets {
+            padding-right: 30%;
+        }
+
+        @include phones {
+            padding-right: 0;
+            width: 100%;
+            text-align: center;
+        }
     }
 
     &__btn {
@@ -16,10 +39,23 @@
         &:last-child {
             margin-right: 0;
         }
+
+        &.disabled {
+            pointer-events: none;
+            opacity: 0.3;
+        }
     }
 
     &__content {
         display: flex;
+
+        @include tablets {
+            justify-content: space-between;
+        }
+
+        @include phones {
+            flex-wrap: wrap;
+        }
     }
 
     &__item {
@@ -28,8 +64,29 @@
         position: relative;
         margin-right: 60px;
 
+        @include desktop {
+            max-width: 40%;
+        }
+
+        @include tablets {
+            margin-right: 0;
+            max-width: 50%;
+            width: calc(50% - 20px);
+            padding-left: 50px;
+        }
+
+        @include phones {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 0;
+        }
+
         &:last-child {
             margin-right: 0;
+
+            @include phones {
+                display: none;
+            }
         }
 
         &::before {
@@ -37,6 +94,14 @@
             position: absolute;
             top: 12px;
             left: 0;
+
+            @include tablets {
+                content: svg-load('quote.svg', fill=$grey, width=37px, height=27px);
+            }
+
+            @include phones {
+                content: none;
+            }
         }
     }
 }

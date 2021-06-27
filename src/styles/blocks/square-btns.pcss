@@ -9,6 +9,11 @@
 
         &--next {
             &::before {
+                content: svg-load('next.svg', fill=$light-grey, width=10px, height=17px);
+            }
+
+
+            &:hover::before {
                 content: svg-load('next.svg', fill=$white, width=10px, height=17px);
             }
         }
@@ -16,6 +21,10 @@
         &--prev {
             &::before {
                 content: svg-load('prev.svg', fill=$light-grey, width=10px, height=17px);
+            }
+
+            &:hover::before {
+                content: svg-load('prev.svg', fill=$white, width=10px, height=17px);
             }
         }
     }

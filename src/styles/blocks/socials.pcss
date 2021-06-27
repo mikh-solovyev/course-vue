@@ -2,6 +2,12 @@
     display: flex;
     align-items: center;
 
+    @include phones {
+        &:not(.socials--footer):not(.socials--hamburger) {
+            display: none;
+        }
+    }
+
     &__item {
         margin-right: 35px;
 
@@ -49,5 +55,15 @@
     &--footer &__icon {
         width: 21px;
         height: 21px;
+    }
+
+    &--hamburger {
+
+        margin: 0 20%;
+
+        .socials__icon {
+            fill: #414C63;
+            fill-opacity: 1;
+        }
     }
 }

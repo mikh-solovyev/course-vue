@@ -3,6 +3,11 @@
     display: flex;
     justify-content: center;
 
+    @include tablets {
+        flex-direction: column;
+        align-items: center;
+    }
+
     &__title {
         @include color($white, 0.5);
         max-width: 165px;
@@ -10,11 +15,26 @@
         padding-top: 5px;
         margin-right: 56px;
         text-align: right;
+
+        @include tablets {
+            text-align: center;
+            margin-right: 0;
+            margin-bottom: 24px;
+            line-height: 30px;
+        }
     }
 
     &__name {
         @include font-desktop-h1;
         @include color($white);
         max-width: 427px;
+
+        @include tablets {
+            text-align: center;
+        }
+
+        @include phones {
+            @include font-mobile-h1;
+        }
     }
 }
