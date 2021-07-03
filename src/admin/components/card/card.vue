@@ -2,6 +2,15 @@
   <div class="card-component card_plain" v-if="simple">
     <slot name="default"></slot>
   </div>
+  <div class="card-component card--slim" v-else-if="slim">
+    <div class="header">
+      <div class="text" v-text="title"></div>
+      <slot name="title" v-if="!!title === false"></slot>
+    </div>
+    <div class="content">
+      <slot name="content"></slot>
+    </div>
+  </div>
   <div class="card-component" v-else>
     <div class="header">
       <div class="text" v-text="title"></div>
@@ -20,7 +29,8 @@ export default {
       type: String,
       default: "" 
     },
-    simple: Boolean
+    simple: Boolean,
+    slim: Boolean
   }
 };
 </script>

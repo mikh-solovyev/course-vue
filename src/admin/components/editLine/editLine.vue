@@ -12,6 +12,7 @@
           placeholder="Название новой группы"
           :value="value"
           :errorText="errorText"
+          :errorMessage="errorMessage"
           @input="$emit('input', $event)"
           @keydown.native.enter="onApprove"
           autofocus="autofocus"
@@ -31,6 +32,9 @@
 </template>
 
 <script>
+import appInput from "../input";
+import icon from "../icon";
+
 export default {
   props: {
     value: {
@@ -41,26 +45,36 @@ export default {
       type: String,
       default: ""
     },
+    editModelByDefault: Boolean,
     blocked: Boolean
   },
   data() {
     return {
-      editmode: false,
-      title: this.value
+      editmode: this.editModelByDefault,
+      title: this.value,
+      errorMessage: ""
     };
   },
   methods: {
     onApprove() {
+      if(this.value.trim() === "") {
+        this.errorMessage = "Введите название"
+        return false;
+      }
+
+      if (this.title.trim() === "") return false;
+
       if (this.title.trim() === this.value.trim()) {
         this.editmode = false;
       } else {
         this.$emit("approve", this.value);
+        this.errorMessage = "";
       }
     }
   },
   components: {
-    icon: () => import("components/icon"),
-    appInput: () => import("components/input")
+    icon,
+    appInput
   }
 };
 </script>

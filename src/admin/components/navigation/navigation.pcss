@@ -1,0 +1,42 @@
+.navigation {}
+.navigation__list {
+    display: flex;
+}
+
+.navigation__link {
+    padding: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    display: block;
+    text-decoration: none;
+    transition: 0.3s;
+    position: relative;
+    color: #414C63;
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 3px;
+        background: none;
+        transition: 0.3s;
+    }
+
+    &:hover {
+        color: #383bcf;
+
+        &:after {
+            background: #383bcf;
+        }
+    }
+}
+
+.navigation__item--active .navigation__link {
+    color: #383bcf;
+
+    &:after {
+        background: #383bcf;
+    }
+}
