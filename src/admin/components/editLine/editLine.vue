@@ -57,18 +57,19 @@ export default {
   },
   methods: {
     onApprove() {
+      
       if(this.value.trim() === "") {
         this.errorMessage = "Введите название"
         return false;
+      } else {
+        this.errorMessage = "";
+        this.editmode = false;
       }
-
-      if (this.title.trim() === "") return false;
 
       if (this.title.trim() === this.value.trim()) {
         this.editmode = false;
       } else {
         this.$emit("approve", this.value);
-        this.errorMessage = "";
       }
     }
   },

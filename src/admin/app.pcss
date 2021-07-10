@@ -4,31 +4,19 @@
     flex-direction: column;
 }
 
-.page-content {
-    padding: 60px 0 20px;
-    background: url("../images/bg/admin.png") center center / cover no-repeat;
-    flex: 1;
+.notification {
+    transition: transform .3s;
 }
 
-.header {
-    display: flex;
-    margin-bottom: 60px;
-}
+.notify-container {
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
 
-.header__title {
-    margin-right: 60px;
-    font-size: 21px;
-    font-weight: bold;
-    color: #414C63;
-}
-
-.app-skills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.app-skills__item {
-    width: calc(100% / 2 - 12px);
-    margin-bottom: 25px;
+    &.active {
+        .notification {
+            transform: translateY(-100%);
+        }
+    }
 }

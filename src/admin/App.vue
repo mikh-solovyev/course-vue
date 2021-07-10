@@ -1,56 +1,36 @@
 <template lang="pug">
   .app-container
-    headline(title="Панель администрирования")
-      user
-    navigation
-    .page-content
-      .container
-        .header
-          .header__title Блок "Обо мне"
-          iconed-button(
-            type="iconed"
-            v-if="emptyCatInShows === false"
-            title="Добавить группу"
-            @click="emptyCatInShows = true"
-          )
-        ul.app-skills
-          li.app-skills__item(v-if="emptyCatInShows")
-            category(empty @remove="emptyCatInShows = false")
-          li.app-skills__item(
-            v-for="section in categories"
-            :key="section.id"
-          )
-            category(
-              :title="section.category"
-              :skills="section.skills"
-            )
+    router-view(name="header")
+    router-view
+    .notify-container(:class="{active: isTooltipShown}")
+      .notification
+        notification(
+          :text="tooltipText"
+          :type="tooltipType"
+          @click="hideTooltip"
+        )
 </template>
 
 <script>
-  import headline from "./components/headline";
-  import user from "./components/user";
-  import navigation from "./components/navigation";
-  import button from "./components/button";
-  import category from "./components/category";
+import notification from "./components/notification";
+import {mapState, mapActions} from 'vuex';
 
-  export default {
-    components: {
-      headline,
-      user,
-      navigation,
-      iconedButton: button,
-      category
-    },
-    data() {
-      return {
-        categories: [],
-        emptyCatInShows: false
-      }
-    },
-    created() {
-      this.categories = require("./data/category.json")
-    }
+export default {
+  components: {
+    notification
+  },
+  computed: {
+    ...mapState("tooltips", {
+      isTooltipShown: state => state.isShows,
+      tooltipText: state => state.text,
+      tooltipType: state => state.type,
+
+    })
+  },
+  methods: {
+    ...mapActions({"hideTooltip": "tooltips/hide"})
   }
+}
 </script>
 
 <style lang="postcss">
