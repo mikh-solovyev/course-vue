@@ -12,9 +12,9 @@
 
 <script>
 const links = [
-  {id: 0, title: "Обо мне", link: "./admin#/about", alias: "/about", active: false},
-  {id: 1, title: "Работы", link: "./admin#/works", alias: "/works", active: false},
-  {id: 2, title: "Отзывы", link: "./admin#/reviews", alias: "/reviews", active: false},
+  {id: 0, title: "Обо мне", link: "./#/about", alias: "/about", active: false},
+  {id: 1, title: "Работы", link: "./#/works", alias: "/works", active: false},
+  {id: 2, title: "Отзывы", link: "./#/reviews", alias: "/reviews", active: false},
 ];
 
 export default {
