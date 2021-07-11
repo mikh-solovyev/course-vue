@@ -63,7 +63,7 @@ export default {
         const token = response.data.token;
         localStorage.setItem("token", token);
         $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-        this.$router.replace('/');
+        this.$router.replace('/about');
       } catch (error) {
         this.showTooltip({
           text: error.response.data.error,
