@@ -52,9 +52,7 @@ export default {
       skill: {
         title: "",
         percent: ""
-      },
-      errorMessageTitle: "",
-      errorMessagePercent: ""
+      }
     }
   },
   methods: {

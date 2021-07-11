@@ -4,6 +4,7 @@
       slot="title"
       v-model="categoryTitle"
       :editModelByDefault="empty"
+      :categoryId="categoryId"
       @remove="$emit('remove', $event)"
       @approve="$emit('approve', $event)"
     )
@@ -41,7 +42,8 @@ export default {
     skills: {
       type: Array,
       default: () => []
-    }
+    },
+    categoryId: Number
   },
   components: {
     card, editLine, skill, skillAddLine

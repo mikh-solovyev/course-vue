@@ -12,7 +12,7 @@
           placeholder="Название новой группы"
           :value="value"
           :errorText="errorText"
-          :errorMessage="errorMessage"
+          :errorMessage="validation.firstError('title')"
           @input="$emit('input', $event)"
           @keydown.native.enter="onApprove"
           autofocus="autofocus"
@@ -24,7 +24,7 @@
           <icon symbol="tick" @click="onApprove"></icon>
         </div>
         <div class="button-icon">
-          <icon symbol="cross" @click="$emit('remove')"></icon>
+          <icon symbol="cross" @click="$emit('remove', categoryId)"></icon>
         </div>
       </div>
     </div>
@@ -34,8 +34,15 @@
 <script>
 import appInput from "../input";
 import icon from "../icon";
+import { Validator, mixin as ValidatorMixin } from 'simple-vue-validator';
 
 export default {
+  mixins: [ValidatorMixin],
+  validators: {
+    "value": value => {
+      return Validator.value(value).required("Введите название");
+    },
+  },
   props: {
     value: {
       type: String,
@@ -46,7 +53,8 @@ export default {
       default: ""
     },
     editModelByDefault: Boolean,
-    blocked: Boolean
+    blocked: Boolean,
+    categoryId: Number
   },
   data() {
     return {
@@ -56,21 +64,15 @@ export default {
     };
   },
   methods: {
-    onApprove() {
-      
-      if(this.value.trim() === "") {
-        this.errorMessage = "Введите название"
-        return false;
-      } else {
-        this.errorMessage = "";
-        this.editmode = false;
-      }
+    async onApprove() {
 
-      if (this.title.trim() === this.value.trim()) {
-        this.editmode = false;
-      } else {
+      if(await this.$validate() === false) return;
+
+      if (this.title.trim() !== this.value.trim()) {
         this.$emit("approve", this.value);
       }
+
+      this.editmode = false;
     }
   },
   components: {

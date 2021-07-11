@@ -11,19 +11,43 @@
   .skill-component(v-else)
     .skill
       .skill__title
-        app-input(no-side-paddings v-model="currentSkill.title" :errorMessage="errorMessageTitle")
+        app-input(
+          no-side-paddings
+          v-model="currentSkill.title"
+          :errorMessage="validation.firstError('currentSkill.title')"
+        )
       .skill__percent
-        app-input(type="number" min="0" max="100" maxlength="3" v-model="currentSkill.percent" :errorMessage="errorMessagePercent")
+        app-input(
+          type="number"
+          min="0"
+          max="100"
+          maxlength="3"
+          v-model="currentSkill.percent"
+          :errorMessage="validation.firstError('currentSkill.percent')"
+        )
       .skill__buttons
-        icon(symbol="tick" @click="[onApprove(currentSkill), $emit('approve', currentSkill)]").skill__btn
+        icon(symbol="tick" @click="onApprove(currentSkill)").skill__btn
         icon(symbol="cross" @click="currentSkill.editmode = false").skill__btn
 </template>
 
 <script>
 import input from "../input";
 import icon from "../icon";
+import { Validator, mixin as ValidatorMixin } from 'simple-vue-validator';
 
 export default {
+  mixins: [ValidatorMixin],
+  validators: {
+    "currentSkill.title": value => {
+      return Validator.value(value).required("Введите название");
+    },
+    "currentSkill.percent": value => {
+      return Validator.value(value)
+          .integer("Должно быть числом")
+          .between(0, 100, "Некорректное значение")
+          .required("Введите значение");
+    }
+  },
   props: {
     skill: {
       type: Object,
@@ -49,8 +73,10 @@ export default {
     appInput: input
   },
   methods: {
-    onApprove(skill) {
+    async onApprove(skill) {
+      if(await this.$validate() === false) return;
 
+      this.$emit('approve', skill);
     }
   }
 }
