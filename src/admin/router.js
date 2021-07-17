@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from './store';
+import axios from "axios";
 
 Vue.use(VueRouter);
 
@@ -12,18 +14,10 @@ import login from './pages/login';
 const routes = [
     {
         path: '/',
-        component: login
-    },
-    {
-        path: '/about',
         components: {
             default: about,
             header: header
         },
-        beforeEnter: (to, from, next) => {
-            if(localStorage.getItem("token")) next();
-            else next("/");
-        }
     },
     {
         path: '/works',
@@ -31,10 +25,6 @@ const routes = [
             default: works,
             header: header
         },
-        beforeEnter: (to, from, next) => {
-            if(localStorage.getItem("token")) next();
-            else next("/");
-        }
     },
     {
         path: '/reviews',
@@ -42,11 +32,41 @@ const routes = [
             default: reviews,
             header: header
         },
-        beforeEnter: (to, from, next) => {
-            if(localStorage.getItem("token")) next();
-            else next("/");
+    },
+    {
+        path: '/login',
+        component: login,
+        meta: {
+            public: true
         }
     }
 ];
 
-export default new VueRouter({routes});
+const router = new VueRouter({routes});
+
+const guard = axios.create({
+    baseURL: "https://webdev-api.loftschool.com"
+});
+
+router.beforeEach(async (to, from, next) => {
+    const isPublicRoute  = to.matched.some(route => route.meta.public);
+    const isUserLoggedIn = store.getters["user/userIsLoggedIn"];
+
+    if(isPublicRoute === false && isUserLoggedIn === false) {
+        const token = localStorage.getItem("token");
+        guard.defaults.headers["Authorization"] = `Bearer ${token}`;
+
+        try {
+            const response = await guard.get("/user");
+            await store.dispatch("user/login", response.data.user);
+            next();
+        } catch (e) {
+            await router.replace("/login");
+            await store.dispatch("user/logout");
+        }
+    } else {
+        next();
+    }
+});
+
+export default router;

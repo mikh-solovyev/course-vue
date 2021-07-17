@@ -31,7 +31,6 @@
               @remove="removeCategory"
               @approve="editCategory($event, section.id)"
             )
-        tags-adder(v-model="tags")
       .container(v-else)
         .loading-message ...loading
 </template>
@@ -39,19 +38,16 @@
 <script>
 import button from "../../components/button";
 import category from "../../components/category";
-import tagsAdder from "../../components/tagsAdder";
 import { mapActions, mapState  } from 'vuex';
 
 export default {
   components: {
     iconedButton: button,
     category,
-    tagsAdder
   },
   data() {
     return {
-      emptyCatInShows: false,
-      tags: "Html, Css, Vue, React"
+      emptyCatInShows: false
     }
   },
   computed: {

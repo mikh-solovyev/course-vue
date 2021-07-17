@@ -19,7 +19,11 @@
             :errorMessage="validation.firstError('user.password')"
           )
         .btn
-          app-button(title="Отправить" :disabled="isSubmitDisabled")
+          app-button(
+            title="Отправить"
+            :disabled="isSubmitDisabled"
+            typeAttr="submit"
+          )
 </template>
 
 
@@ -51,7 +55,10 @@ export default {
     appInput, appButton
   },
   methods: {
-    ...mapActions({"showTooltip": "tooltips/show"}),
+    ...mapActions({
+      showTooltip: "tooltips/show",
+      login : "user/login"
+    }),
     async handleSubmit() {
       if(await this.$validate() === false) return;
 
@@ -63,7 +70,10 @@ export default {
         const token = response.data.token;
         localStorage.setItem("token", token);
         $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
-        this.$router.replace('/about');
+
+        const userResponse = await $axios.get("/user");
+        this.login(userResponse.data.user);
+        await this.$router.replace("/");
       } catch (error) {
         this.showTooltip({
           text: error.response.data.error,
