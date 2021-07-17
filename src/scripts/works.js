@@ -1,4 +1,8 @@
 import Vue from "vue";
+import axios from "axios";
+import config from "../../env.paths.json";
+
+axios.defaults.baseURL = config.BASE_URL;
 
 window.addEventListener("load", () => {
 
@@ -44,13 +48,17 @@ window.addEventListener("load", () => {
               currentIndex: 0
           }
         },
-        created() {
-            const data = require("../data/works.json");
-            this.works = this.requireImagesToArray(data);
+        async created() {
+            const {data} = await axios.get("/works/472");
+            this.works = this.prepareData(data);
         },
         computed: {
             currentWork() {
-                return this.works[0];
+                if(this.works[0]) {
+                    return this.works[0];
+                }
+
+                return {};
             }
         },
         watch: {
@@ -61,13 +69,12 @@ window.addEventListener("load", () => {
         methods: {
             change(index) {
                 const currentItem = this.works[index];
-                this.currentIndex = currentItem.id - 1;
+                this.currentIndex = currentItem.index - 1;
 
                 this.works.splice(index, 1);
                 this.works.push(this.works[0]);
                 this.works.shift();
                 this.works.unshift(currentItem);
-
             },
             makeLoop(index) {
                 const worksLength = this.works.length - 1;
@@ -80,10 +87,11 @@ window.addEventListener("load", () => {
                     this.currentIndex = 0;
                 }
             },
-            requireImagesToArray(data) {
-                return data.map(item => {
-                    const requiredImage = require(`../images/content/slider/${item.picture}`).default;
-                    item.picture = requiredImage;
+            prepareData(data) {
+                return data.map((item, index) => {
+                    item.index = index + 1;
+                    item.photo = `https://webdev-api.loftschool.com/${item.photo}`;
+                    item.techs = item.techs.split(",");
                     return item;
                 });
             },

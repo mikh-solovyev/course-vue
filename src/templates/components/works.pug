@@ -13,7 +13,7 @@ template#works-container
 
 template#works-display
     .works-preview__pictures(:data-slide="currentIndex + 1")
-        img(:src="currentWork.picture" :alt="currentWork.title").works-preview__image
+        img(:src=`currentWork.photo` :alt="currentWork.title").works-preview__image
         .works-preview__thumbs
             thumbs(
                 :works="normalWorks",
@@ -34,7 +34,7 @@ template#works-thumbs
                 @click="$emit('change', index)"
             )
             button.thumbs__link
-                img(:src="slide.picture" :alt="slide.title").thumbs__pic
+                img(:src="slide.photo" :alt="slide.title").thumbs__pic
 
 template#works-btns
     .square-btns
@@ -50,7 +50,7 @@ template#works-btns
 template#works-info
     .works-preview__info
         tags(
-            :tags="currentWork.skills"
+            :tags="currentWork.techs"
         )
         h3.works-preview__title {{currentWork.title}}
         .works-preview__desc

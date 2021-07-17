@@ -75,9 +75,8 @@
 
 .title {
   color: $grey;
-  opacity: 0.6;
   font-weight: 600;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .textarea__elem {
@@ -88,6 +87,11 @@
   font-weight: 600;
   margin-top: 10px;
   width: 100%;
+
+  &::placeholder {
+    color: #ccc;
+    font-weight: lighter;
+  }
 }
 
 .input__elem {

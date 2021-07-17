@@ -1,4 +1,8 @@
 import Vue from "vue";
+import axios from "axios";
+import config from "../../env.paths.json";
+
+axios.defaults.baseURL = config.BASE_URL;
 
 window.addEventListener("load",  () => {
 
@@ -39,8 +43,9 @@ window.addEventListener("load",  () => {
                skills: []
            }
         },
-        created() {
-            this.skillsData = require("../data/skills.json");
+        async created() {
+            const {data} = await axios.get("/categories/472");
+            this.skills = data;
         }
     });
 });

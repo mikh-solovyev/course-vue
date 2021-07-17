@@ -1,6 +1,6 @@
 template#skills-list
     ul.skills
-        li.skills__item(v-for="section in skillsData" :key="section.id")
+        li.skills__item(v-for="section in skills" :key="section.id")
             skills-row(
                 :section="section"
             )

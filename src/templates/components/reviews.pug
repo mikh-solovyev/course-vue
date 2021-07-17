@@ -13,7 +13,7 @@ template#slider-container
                         .user-display
                             .user-display__avatar
                                 .user-display__avatar-style
-                                    img(:src="review.picture" :alt="review.name").user-display__pic
+                                    img(:src="review.photo" :alt="review.author").user-display__pic
                             .user-display__data
-                                .user-display__name {{review.name}}
-                                .user-display__position {{review.position}}
+                                .user-display__name {{review.author}}
+                                .user-display__position {{review.occ}}

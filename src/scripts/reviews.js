@@ -2,6 +2,11 @@ import Vue from "vue";
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/swiper-bundle.css";
 
+import axios from "axios";
+import config from "../../env.paths.json";
+
+axios.defaults.baseURL = config.BASE_URL;
+
 window.addEventListener("load", () => {
     new Vue({
         el: "#slider-component",
@@ -32,10 +37,9 @@ window.addEventListener("load", () => {
             }
         },
         methods: {
-            requireImagesToArray(data) {
+            prepareData(data) {
                 return data.map(item => {
-                    const requiredImage = require(`../images/content/reviews/${item.picture}`).default;
-                    item.picture = requiredImage;
+                    item.photo = `https://webdev-api.loftschool.com/${item.photo}`;
                     return item;
                 });
             },
@@ -58,9 +62,9 @@ window.addEventListener("load", () => {
                 this.isFinish = slider.isEnd;
             }
         },
-        created() {
-            const data = require("../data/reviews.json");
-            this.reviews = this.requireImagesToArray(data);
+        async created() {
+            const {data} = await axios.get("/reviews/472");
+            this.reviews = this.prepareData(data);
         }
     });
 });

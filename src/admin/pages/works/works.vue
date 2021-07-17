@@ -6,6 +6,7 @@
           .header__title Блок "Работы"
         div.form(v-if="isEditorShow")
           app-form(
+            type="works"
             @hideEditor="hideEditor"
             @changeWorks="changeWorks($event)"
             :editedWork="editedWork"

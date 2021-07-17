@@ -1,0 +1,125 @@
+.form-title {
+    color: $grey;
+}
+
+.form-cols {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-col {
+    padding-right: 30px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.form-col-left {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: $bp-tablets) {
+        width: 30%;
+        padding-right: 0;
+    }
+
+    @media screen and (max-width: $bp-phones) {
+        width: 100%;
+        margin-bottom: 80px;
+    }
+}
+
+.form-col-right {
+    width: 80%;
+
+    @media screen and (max-width: $bp-tablets) {
+        width: 70%;
+    }
+
+    @media screen and (max-width: $bp-phones) {
+        width: 100%;
+        padding-right: 0;
+    }
+}
+
+.uploader {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #dee4ed;
+    border: 1px solid #a1a1a1;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    border-radius: 50%;
+
+    &.active {
+        .uploader-title {
+            background: none;
+        }
+    }
+
+    &.hovered {
+        border-color: blue;
+    }
+}
+
+.uploader-title {
+    color: $grey;
+    opacity: .6;
+    width: 200px;
+    height: 200px;
+
+    background: svg-load("user.svg", fill=#ffffff) center center no-repeat;
+    background-size: 91px 99px;
+
+    &.loaded {
+        background: none;
+    }
+}
+
+.uploader-btn {
+    position: absolute;
+    top: 100%;
+}
+
+.form-row {
+    margin-bottom: 30px;
+}
+
+.form-btns {
+    display: flex;
+    justify-content: flex-end;
+
+    @media screen and (max-width: $bp-phones) {
+        justify-content: center;
+    }
+}
+
+.btn {
+    margin-right: 10px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.form-row--top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    & .input {
+        width: calc(50% - 40px);
+
+        @media screen and (max-width: $bp-phones) {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+    }
+}
