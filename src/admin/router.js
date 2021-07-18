@@ -5,37 +5,37 @@ import axios from "axios";
 
 Vue.use(VueRouter);
 
-// import header from './components/header';
-// import about from './pages/about';
-// import works from './pages/works';
-// import reviews from './pages/reviews';
-// import login from './pages/login';
+import header from './components/header';
+import about from './pages/about';
+import works from './pages/works';
+import reviews from './pages/reviews';
+import login from './pages/login';
 
 const routes = [
     {
         path: '/',
         components: {
-            default: () => import("./pages/about"),
-            header: () => import("./components/header")
+            default: about,
+            header: header
         },
     },
     {
         path: '/works',
         components: {
-            default: () => import("./pages/works"),
-            header: () => import("./components/header")
+            default: works,
+            header: header
         },
     },
     {
         path: '/reviews',
         components: {
-            default: () => import("./pages/reviews"),
-            header: () => import("./components/header")
+            default: reviews,
+            header: header
         },
     },
     {
         path: '/login',
-        component: () => import("./pages/login"),
+        component: login,
         meta: {
             public: true
         }

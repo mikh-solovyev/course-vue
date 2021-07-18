@@ -12,7 +12,7 @@ export default {
   props: {
     size: {
       type: Number,
-      default: "3"
+      default: 3
     }
   },
   computed: {

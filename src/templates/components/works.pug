@@ -2,6 +2,7 @@ template#works-container
     .works-preview
         display(
             :current-work="currentWork",
+            :current-direction="currentDirection"
             :works="works",
             :current-index="currentIndex",
             @slide="slide",
@@ -18,6 +19,7 @@ template#works-display
             thumbs(
                 :works="normalWorks",
                 :current-work="currentWork",
+                :current-direction="currentDirection"
                 @change="$emit('change', $event)"
             )
         .works-preview__btns
@@ -26,7 +28,13 @@ template#works-display
             )
 
 template#works-thumbs
-    ul.thumbs
+    transition-group(
+        tag="ul"
+        :css="false"
+        @enter="enterCb"
+        @after-enter="afterCb"
+        @leave="leaveCb"
+    ).thumbs
         li.thumbs__item(
                 v-for="(slide, index) in works"
                 :key="slide.id"
@@ -39,11 +47,11 @@ template#works-thumbs
 template#works-btns
     .square-btns
         button(
-            @click="$emit('slide', 'next')"
+            @click="$emit('slide', {'direction': 'next', 'target': $event.target})"
             type="button"
         ).square-btns__item.square-btns__item--next
         button(
-            @click="$emit('slide', 'prev')"
+            @click="$emit('slide', {'direction': 'prev', 'target': $event.target})"
             type="button"
         ).square-btns__item.square-btns__item--prev
 

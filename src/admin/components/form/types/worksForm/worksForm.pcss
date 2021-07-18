@@ -4,7 +4,10 @@
 
 .form-cols {
     display: flex;
-    flex-wrap: wrap;
+
+    @media screen and (max-width: $bp-tablets) {
+        flex-wrap: wrap;
+    }
 }
 
 .form-col {

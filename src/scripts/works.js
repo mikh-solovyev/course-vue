@@ -12,8 +12,44 @@ window.addEventListener("load", () => {
     };
 
     const thumbs = {
-        props: ["works", "currentWork"],
+        props: ["works", "currentWork", "currentDirection"],
         template: `#works-thumbs`,
+        methods: {
+            enterCb(el, done) {
+                const list = el.closest("ul");
+                const elWidth = el.offsetWidth;
+                const wrapperWidth = elWidth * 3;
+
+                el.closest(".works-preview__thumbs").style.width = wrapperWidth + "px";
+                list.classList.add("transition");
+
+                if(this.currentDirection === "next") {
+                    el.classList.add("outsider");
+                    list.style.transform = `translateX(-${elWidth}px)`;
+                } else {
+                    el.classList.add("insider");
+                    list.style.transform = `translateX(${elWidth}px)`;
+                }
+
+                list.addEventListener("transitionend", e => done());
+            },
+
+            afterCb(el) {
+                const list = el.closest("ul");
+                if(this.currentDirection === "next") {
+                    el.classList.remove("outsider");
+                } else {
+                    el.classList.remove("insider");
+                }
+
+                list.classList.remove("transition");
+                list.style.transform = "translateX(0px)";
+            },
+            leaveCb(el, done) {
+                el.classList.add("fade");
+                el.addEventListener("transitionend", e => done());
+            }
+        }
     };
 
     const btns = {
@@ -27,13 +63,13 @@ window.addEventListener("load", () => {
     };
 
     const display = {
-        props: ["currentWork", "works", "currentIndex"],
+        props: ["currentWork", "works", "currentIndex", "currentDirection"],
         template: `#works-display`,
         components: {thumbs, btns},
         computed: {
             normalWorks() {
                 const works = [...this.works];
-                return works.slice(0, 4);
+                return works.slice(0, 3);
             }
         }
     };
@@ -45,7 +81,8 @@ window.addEventListener("load", () => {
         data() {
           return  {
               works: [],
-              currentIndex: 0
+              currentIndex: 0,
+              currentDirection: "next"
           }
         },
         async created() {
@@ -95,9 +132,15 @@ window.addEventListener("load", () => {
                     return item;
                 });
             },
-            slide(direction) {
+            slide(params) {
+                if(timeOut)
+                    clearTimeout(timeOut);
+
+                params.target.closest(".square-btns").classList.add("disabled");
+
+                this.currentDirection = params.direction;
                 const lastItem = this.works[this.works.length - 1];
-                switch (direction) {
+                switch (params.direction) {
                     case 'next': {
                         // Если не нужна цикличность
                         //if(this.works.length - 1 > this.currentIndex) {
@@ -116,6 +159,10 @@ window.addEventListener("load", () => {
                         break;
                     }
                 }
+
+                let timeOut = setTimeout(() => {
+                    params.target.closest(".square-btns").classList.remove("disabled");
+                }, 1000);
             }
         }
     });
